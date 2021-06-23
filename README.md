@@ -12,5 +12,8 @@
 ## Data Structure & Algorithm
 * [자료구조와 알고리즘 기초](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/basic.md)
 
+## Python
+* [파이썬 문법과 개념](https://github.com/dudtjakdl/TIL/blob/main/Python/python.md)
+
 ## Git
 * [git 기본 명령어](https://github.com/dudtjakdl/TIL/blob/main/Git/git_basic.md)
