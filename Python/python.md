@@ -1,5 +1,3 @@
-# 파이썬 개념
-
 ## 이터러블 객체
 이터러블 객체란 **반복할 수 있는 객체**를 말하며, 파이썬의 대표적인 이터러블 자료형으로는 `list, str, tuple, dic, set` 등이 있다.
 
@@ -213,3 +211,51 @@ else:
 
 # 실행결과: 리스트 안에 0이 없습니다.
 ```
+
+## enum
+
+열거형(enumeration)은 서로 관련이 있는 고유한 상숫값의 집합이다. 열거형 자체는 이터레이트(iterate) 될 수 있으며, 상수를 나타내는 데 사용되기 때문에 열거형 멤버의 이름은 **대문자**를 사용하는 것이 좋다.
+
+```python
+from enum import Enum   # enum 내장 모듈 불러오기
+
+class Color(Enum):      # Enum 클래스 확장을 통한 Color 열거형 타입 생성 
+    RED = 1
+    BLUE = 2
+    GREEN = 3 
+```
+
+enum 타입의 상수 인스턴스는 ```name``` 과 ```value``` 속성을 가진다.
+
+```python
+>>> Color.RED.name
+'RED'
+>>> Color.RED.value
+1
+```
+
+enum 타입은 이터러블 객체이므로 ```for```문을 통한 순회가 가능하다.
+
+```python
+>>> for color in Color:
+        print(color)
+
+Color.RED
+Color.BLUE
+Color.GREEN
+```
+
+또한 일반 함수 호출을 통해 enum 타입을 정의할 수도 있다.
+
+```python
+>>> Color1 = Enum("Color1", "RED BLUE GREEN")
+>>> list(Color1)
+[<Color1.RED: 1>, <Color1.BLUE: 2>, <Color1.GREEN: 3>]
+
+>>> Color2 = Enum("Color2", ['WHITE', 'BLACK', 'BROWN'])
+>>> list(Color2)
+[<Color2.WHITE: 1>, <Color2.BLACK: 2>, <Color2.BROWN: 3>]
+```
+> 참고 https://python.flowdas.com/library/enum.html
+
+> 참고 https://www.daleseo.com/python-enum/
