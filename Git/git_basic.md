@@ -49,6 +49,8 @@ git commit -m "메시지"
 # 메시지와 함께 커밋
 git commit -am "메시지" 
 # 스테이지에 올림과 동시에 커밋 (최초로 커밋한 파일만 가능)
+git commit --amend 
+# 커밋 메시지 수정 (vim 에디터로 편집)
 
 git log
 # 커밋 로그 표시
