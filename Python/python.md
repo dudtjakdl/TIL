@@ -1,3 +1,5 @@
+- 분류 없이 나열. 내용이 쌓이면 목차를 나누어 정리할 예정!
+
 ## 이터러블 객체
 이터러블 객체란 **반복할 수 있는 객체**를 말하며, 파이썬의 대표적인 이터러블 자료형으로는 `list, str, tuple, dic, set` 등이 있다.
 
@@ -259,3 +261,82 @@ Color.GREEN
 > 참고 https://python.flowdas.com/library/enum.html
 
 > 참고 https://www.daleseo.com/python-enum/
+
+## 예외 처리
+파이썬에서는 프로그램을 실행하다가 오류(error)가 발생하면 예외 처리(Exception) 메시지를 내보낼 수 있다. 
+
+예외 처리를 적절히 수행하면 프로그램이 중간에 중단되는 것을 막을 수 있어 사용성과 완성도가 높은 프로그램을 짤 수 있다.
+
+### try - except - finally
+파이썬 예외 처리의 기본 구조는 다음과 같다. 
+
+```python
+try:
+    실행 명령문 1
+    실행 명령문 2
+except 에러 종류 1:
+    예외 처리 명령문 1
+    예외 처리 명령문 2
+except 에러 종류 2:
+    예외 처리 명령문 1
+    예외 처리 명령문 2
+finally: # 에러 발생과 상관없이 항상 try문 다음에 실행
+    실행 명령문 1
+    실행 명령문 2
+```
+finally 구문은 보통 열린 파일을 닫거나 자원을 해제하는 작업을 수행한다.
+
+except문 뒤에 **as err** 을 추가하면 err 변수(기본 에러 메시지)를 사용할 수 있다.
+
+```python
+except ZeroDivisionError as err:
+    print(err)
+
+# 예외 발생 시 실행 결과: division by zero
+```
+
+모든 에러에 대한 예외 처리를 전부 할 수 없을 경우, 에러 종류에 **Exception**을 쓰면 지금까지 정의되지 않은 모든 에러에 대한 예외 처리가 가능하다.
+
+```python
+except Exception as err:
+    print("알 수 없는 에러가 발생하였습니다.")
+    print(err)
+```
+> 참고 https://nadocoding.tistory.com/72?category=902275
+
+### raise
+raise문으로 프로그램의 예외 처리를 의도적으로 내보낼 수 있다.
+
+사용 방법은 ```raise 에러 종류```와 같이 입력하며 다음 예시처럼 사용할 수 있다.
+
+```python
+try:
+    print("한자리 숫자만 입력하세요.")
+    num = int(input("숫자 입력: "))
+    if num >= 10:
+        raise ValueError:
+    print(num)
+except ValueError:
+    print("잘못된 값을 입력하였습니다.")
+```
+### 사용자 정의 예외 처리
+ValueError, ZeroDivisionError 등 파이썬이 제공하는 예외 처리를 표준 내장 예외처리라고 한다. 기본으로 제공되는 예외 처리 말고도 사용자가 직접 정의하여 예외 처리를 발생시킬 수 있다.
+
+사용자 정의 예외 처리는 **Exception 클래스(또는 그 파생 클래스)** 에서 파생하는 것이 원칙이다. 즉, Exception 클래스의 하위 클래스로 정의하여 사용해야 한다.
+
+```python
+class FullError(Exception):
+    pass
+
+try:
+    lst = [None] * 5
+    i = 0
+    while True:
+        if i >= len(lst):
+            raise FullError
+        lst[i] = i
+        i += 1
+except FullError:
+    print("리스트가 꽉 찼습니다.")
+
+```
