@@ -12,6 +12,8 @@
 ## Data Structure & Algorithm
 * [자료구조와 알고리즘 기초](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/basic.md)
 * [검색 알고리즘](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/search.md)
+* [스택과 큐](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/stack_queue.md)
+* [재귀 알고리즘](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/recursion.md)
 
 ## Python
 * [파이썬 문법과 개념](https://github.com/dudtjakdl/TIL/blob/main/Python/python.md)
