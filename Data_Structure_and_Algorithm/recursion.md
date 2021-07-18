@@ -97,4 +97,60 @@ def tower_of_hanoi(n: int, a: int, b: int) -> None:
 ```
 
 > 이미지 출처 https://www.geeksforgeeks.org/c-program-for-tower-of-hanoi/
+
 > 이미지 출처  https://medium.com/@jamalmaria111/tower-of-hanoi-js-algorithm-3f667fa46f0f
+
+## 8퀸 문제
+
+재귀 알고리즘을 적용할 수 있는 또 다른 예제로 8퀸 문제(8-Queen problem)이 있다. 
+
+8퀸 문제는 **8개의 퀸이 서로 잡을 수 없도록 8 x 8 체스판에 가로, 세로, 대각선이 중복되지 않도록 배치**하는 문제이다.
+
+![8_queen](https://miro.medium.com/max/1000/1*Zm2pbDR5CS2w2xeUbTBxQQ.png)
+
+위 그림은 8퀸 문제의 해결 방법 중에 하나이다. 이렇게 총 해결 방법은 92가지가 있다.
+
+그런데 8퀸 문제는 재귀 개념을 이용하여 해를 탐색할 수 있다.
+
+![8_queen_recursion](https://i.ibb.co/9Y4SVPJ/algorithm-n-queens-problems3.png)
+
+위 그림과 같이 퀸이 (0, 0)에 놓였을 때 분기가 나뉘고, 또 다음 행에 퀸이 놓였을 때 분기가 계속 나뉜다. 이런 과정을 반복하여 재귀적으로 경우의 수를 나누면 8퀸 문제의 조건을 만족하는 모든 해를 찾을 수 있다.
+
+8 x 8 체스판을 2차 배열로 정의하고 퀸이 놓이지 않았으면 값이 0, 퀸이 놓였으면 값이 1이라고 가정했을 때, 위 재귀 개념을 참고하여 8퀸 문제의 해를 구하는 프로그램을 구현하였다.
+
+
+ 
+```python
+chess = [[0] * 8] * 8           # 8 x 8 체스판 행렬 0으로 초기화
+col_chk = [False] * 8           # 각 열에 퀸을 배치했는지 체크
+right_diag_chk = [False] * 15   # 대각선 방향(↙↗)으로 퀸을 배치했는지 체크
+left_diag_chk = [False] * 15    # 대각선 방향( ↘↖)으로 퀸을 배치했는지 체크
+
+def chess_print() -> None:
+    """퀸을 놓은 체스판을 □와 ■로 출력"""
+    for i in range(8):
+        for j in range(8):
+            print('■' if chess[i][j] else '□', end='')
+        print()
+    print()
+
+def queen(row: int) -> None:
+    for col in range(8):
+        if (not col_chk[col] and not right_diag_chk[row + col] and not left_diag_chk[col - row + 7]):
+            """열과 대각선에 퀸이 배치 되지 않았을 시"""
+            chess[row] = [0] * 8    # 행에 퀸이 중복되지 않도록 행 초기화
+            chess[row][col] = 1     # 퀸을 row 행 col 열에 놓기
+            if row == 7:            # 퀸을 마지막 행까지 다 놓았을 시 출력
+                chess_print()
+            else:
+                col_chk[col] = right_diag_chk[row + col] = left_diag_chk[col - row + 7] = True
+                set(row + 1)        # 다음 행에 퀸 놓기
+                col_chk[col] = right_diag_chk[row + col] = left_diag_chk[col - row + 7] = False
+
+if __name__ == '__main__':
+    queen(0)
+```
+
+> 이미지 출처 https://medium.com/@paabrown/solving-the-n-queens-problem-6891e3d21b0
+
+> 이미지 출처 http://dawoonjeong.com/algorithm-backtracking/
