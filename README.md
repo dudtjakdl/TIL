@@ -14,6 +14,7 @@
 * [검색 알고리즘](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/search.md)
 * [스택과 큐](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/stack_queue.md)
 * [재귀 알고리즘](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/recursion.md)
+* [정렬 알고리즘](https://github.com/dudtjakdl/TIL/blob/main/Data_Structure_and_Algorithm/sort.md)
 
 ## Python
 * [파이썬 문법과 개념](https://github.com/dudtjakdl/TIL/blob/main/Python/python.md)
