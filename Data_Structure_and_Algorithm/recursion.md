@@ -1,3 +1,8 @@
+> 해당 문서는 [Do it! 자료구조와 함께 배우는 알고리즘 입문 : 파이썬 편 (시바타 보요 저)](http://www.yes24.com/Product/Goods/91219874)을 보고 정리한 내용입니다.
+- 본 문서에 작성된 코드는 **파이썬 (Python)** 으로 작성하였습니다.
+- 책을 보며 공부하면서 도움이 된 파이썬 문법과 개념은 [Python 폴더](https://github.com/dudtjakdl/TIL/blob/main/Python)의 문서에 정리하였습니다.
+- 그 외 추가 내용은 인터넷 검색을 통해 공부하고 덧붙여 정리하였습니다.
+
 # 재귀
     재귀 (recursion) : 어떠한 것을 정의할 때 자기 자신을 포함하고 다시 자기 자신을 사용(참조)하는 것.
 
@@ -144,7 +149,7 @@ def queen(row: int) -> None:
                 chess_print()
             else:
                 col_chk[col] = right_diag_chk[row + col] = left_diag_chk[col - row + 7] = True
-                set(row + 1)        # 다음 행에 퀸 놓기
+                queen(row + 1)        # 다음 행에 퀸 놓기
                 col_chk[col] = right_diag_chk[row + col] = left_diag_chk[col - row + 7] = False
 
 if __name__ == '__main__':
