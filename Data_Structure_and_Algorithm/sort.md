@@ -110,10 +110,40 @@ def insertion_sort(a: MutableSequence) -> None:
         tmp = a[focus]
         while i > 0 and a[i - 1] > tmp:
             a[i] = a[i - 1]
-            j -= 1
+            i -= 1
         a[i] = tmp
 ```
+- 단순 삽입 정렬은 파이썬 표준 라이브러리인 bisect의 **insort()** 함수로, 구현할 수 있으며 ```bisect.insort(a, x, lo, hi)```로 사용 가능하다. (a: 정렬할 배열, x: 주목할 값, a[lo]~a[hi] 사이에 x 삽입)
 
 > 이미지 출처 https://algopoolja.tistory.com/19
 
 ### 이진 삽입 정렬
+단순 삽입 정렬은 배열의 원소 수가 많아질수록 원소 삽입에 필요한 비교, 교환 비용이 커진다.
+
+그러나 주목된 원소를 삽입할 위치를 찾을 때, 이미 정렬된 범위에서 이진 검색법을 사용하여 그 위치를 찾으면 단순 비교했을 때보다 더 효율적으로 삽입을 수행할 수 있다.
+
+```python
+def binary_insertion_sort(a: MutableSequence) -> None:
+    n = len(a)
+    for focus in range(1 ,n):
+        key = a[focus]
+        pl = 0          # 검색 범위 맨 앞 원소의 인덱스
+        pr = focus - 1      # 검색 범위 맨 끝 원소의 인덱스
+
+        while True:     # 이진 검색으로 삽입할 위치 검색
+            pc = (pl + pr) // 2
+            if a[pc] == key:
+                break
+            elif a[pc] < key:
+                pl = pc + 1
+            else:
+                pr = pc - 1
+            if pl > pr:
+                break
+
+        p = pc + 1 if pl <= pr else pr + 1  # 삽입할 위치의 인덱스
+
+        for i in range(focus, p, -1):       # 삽입 위치 뒤의 원소들 뒤로 한칸씩 이동
+            a[i] = a[i - 1]
+        a[p] = key
+```         
